@@ -1,8 +1,5 @@
-<div *ngIf="dataReady">
-	<app-table-pagination
-		[pagesNumber]="numberOfPages"
-		(currentPageE)="setCurrentPage($event)"
-	></app-table-pagination>
+<div>
+	<app-table-pagination></app-table-pagination>
 
 	<table>
 		<thead>
@@ -27,8 +24,5 @@
 		</tbody>
 	</table>
 
-	<app-table-pagination
-		[pagesNumber]="numberOfPages"
-		(currentPageE)="setCurrentPage($event)"
-	></app-table-pagination>
+	<app-table-pagination></app-table-pagination>
 </div>

@@ -1,18 +1,31 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
+import { TablePaginationService } from "./table-pagination.service";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-table-pagination",
 	templateUrl: "./table-pagination.component.html",
 	styleUrls: ["./table-pagination.component.scss"],
 })
-export class TablePaginationComponent implements OnInit {
-	@Input() pagesNumber: number;
+export class TablePaginationComponent implements OnDestroy {
+	pagesNumber: number;
+	pagesNumberSubscr: Subscription;
+	currentPageSubscr: Subscription;
 	currentPage: number = 1;
-	@Output() currentPageE: EventEmitter<number> = new EventEmitter<number>();
 
-	constructor() {}
+	constructor(private tablePagService: TablePaginationService) {
+		this.pagesNumberSubscr = this.tablePagService.numberOfPages.subscribe(
+			(num) => {
+				this.pagesNumber = num;
+			}
+		);
+		this.currentPageSubscr = this.tablePagService.currentPageSub.subscribe(
+			(num) => {
+				this.currentPage = num;
+			}
+		);
+	}
 
-	ngOnInit() {}
 	onInput(inputField) {
 		if (inputField.value > this.pagesNumber)
 			inputField.value = this.pagesNumber;
@@ -24,7 +37,7 @@ export class TablePaginationComponent implements OnInit {
 		if (this.currentPage < 1) this.currentPage = 1;
 		if (this.currentPage > this.pagesNumber)
 			this.currentPage = this.pagesNumber;
-		this.currentPageE.emit(this.currentPage);
+		this.tablePagService.setCurrentPage(this.currentPage);
 	}
 	onPageIncrement() {
 		if (this.currentPage < this.pagesNumber) {
@@ -37,5 +50,10 @@ export class TablePaginationComponent implements OnInit {
 			this.currentPage--;
 			this.onSetCurrentPage();
 		}
+	}
+
+	ngOnDestroy() {
+		this.pagesNumberSubscr.unsubscribe();
+		this.currentPageSubscr.unsubscribe();
 	}
 }

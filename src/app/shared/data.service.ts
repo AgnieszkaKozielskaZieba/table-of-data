@@ -10,7 +10,7 @@ import { map, tap } from "rxjs/operators";
 export class DataService {
 	companiesData = [];
 	filteredData = [];
-	dataToDisplay = new Subject<any[]>();
+	dataToDisplay: Subject<any[]> = new Subject<any[]>();
 	sortedBy = "";
 	sortDirection = 1;
 	dataReady = new Subject<boolean>();
@@ -85,8 +85,8 @@ export class DataService {
 				this.companiesData = dataWithIncome;
 				this.filteredData = this.companiesData;
 				this.sortData("id");
-				this.dataToDisplay.next(this.filteredData);
 				this.dataReady.next(true);
+				this.dataToDisplay.next(this.filteredData);
 			});
 		});
 	}
@@ -103,6 +103,7 @@ export class DataService {
 			return 0;
 		});
 		this.sortedBy = method;
+		this.dataToDisplay.next(this.filteredData);
 	}
 
 	filterData(filteringData) {
