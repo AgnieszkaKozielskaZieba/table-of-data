@@ -1,22 +1,2 @@
-<table *ngIf="dataReady">
-  <thead>
-    <tr>
-      <th (click)="sortData('id')">ID</th>
-      <th (click)="sortData('name')">Name</th>
-      <th (click)="sortData('city')">City</th>
-      <th (click)="sortData('totalIncome')">Total income</th>
-      <th (click)="sortData('averageIncome')">Average income</th>
-      <th (click)="sortData('lastMonthIncome')">Last month income</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let company of companiesData">
-      <td>{{ company.id }}</td>
-      <td>{{ company.name }}</td>
-      <td>{{ company.city }}</td>
-      <td>{{ company.totalIncome }}</td>
-      <td>{{ company.averageIncome }}</td>
-      <td>{{ company.lastMonthIncome }}</td>
-    </tr>
-  </tbody>
-</table>
+<app-filter-fields></app-filter-fields>
+<app-table></app-table>

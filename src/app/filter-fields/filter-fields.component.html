@@ -1,0 +1,29 @@
+<input #id name="id" type="number" (input)="onFilterChange(id)" />
+<input #name name="name" type="text" (input)="onFilterChange(name)" />
+<input #city name="city" type="text" (input)="onFilterChange(city)" />
+<form
+	ngGroupModel
+	#totalIncome="ngForm"
+	(input)="onFilterChange(totalIncome, 'totalIncome')"
+>
+	<input type="number" name="min" ngModel />
+	<input type="number" name="max" ngModel />
+</form>
+
+<form
+	ngGroupModel
+	#averageIncome="ngForm"
+	(input)="onFilterChange(averageIncome, 'averageIncome')"
+>
+	<input type="number" name="min" ngModel />
+	<input type="number" name="max" ngModel />
+</form>
+
+<form
+	ngGroupModel
+	#lastMonthIncome="ngForm"
+	(input)="onFilterChange(lastMonthIncome, 'lastMonthIncome')"
+>
+	<input type="number" name="min" ngModel />
+	<input type="number" name="max" ngModel />
+</form>
