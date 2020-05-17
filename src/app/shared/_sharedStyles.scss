@@ -1,8 +1,23 @@
-$themeColour: #f34573;
-$fontColour: #2a6171;
-$backColour: #75cac3;
-$backColour2: #d7f7f5;
-$inputColour: #d7f7f5;
+/*$themeColour: #f8b500;
+$fontColour: #343434;
+$backColour: #cacaca;
+$backColour2: #fcfaf1;
+$backColour3: #f0eee6;
+$inputColour: #fcfaf1;*/
+
+/*$themeColour: #fcbf1e;
+$fontColour: #120136;
+$backColour: #120136;
+$backColour2: #fcfaf1;
+$backColour3: #f0eee6;
+$inputColour: #fcfaf1;*/
+
+$themeColour: #120136;
+$fontColour: #120136;
+$backColour: #fcbf1e;
+$backColour2: #fcfaf1;
+$backColour3: #f0eee6;
+$inputColour: #fcfaf1;
 
 @mixin responsiveContainer {
 	width: 100%;

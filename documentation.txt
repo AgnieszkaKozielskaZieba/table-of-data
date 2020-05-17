@@ -1,0 +1,20 @@
+Table of Data - Documentation
+
+1. Introduction
+This application fetches and displays companies income data. User can filter and sort data.
+Data are shown in paginated table.
+
+2. Running the application
+
+3. Filtering data
+User can filter data with FILTER section. It contains ID (number), Name (text), City (text)
+and income inputs: Total, Average and Last month, all containing Min and Max number values.
+User can filter data by one or more fields simultaneously.
+
+4. Sorting data
+User can sort data by all fields clicking on the column's header. 
+First click sorts data in ascending order, second click sorts data in descending order.
+
+5. Pagination
+Table is paginated. User can increment or decrement page with < and > buttons, or go directly to any page with number input.
+

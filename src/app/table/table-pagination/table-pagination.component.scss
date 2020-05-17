@@ -3,6 +3,7 @@
 div {
 	text-align: center;
 	margin: 20px 0;
+	color: $themeColour;
 }
 input {
 	width: 30px;
@@ -12,4 +13,5 @@ button {
 	border-radius: 5px;
 	margin: 0 10px;
 	background-color: $themeColour;
+	color: $inputColour;
 }
