@@ -1,29 +1,61 @@
-<input #id name="id" type="number" (input)="onFilterChange(id)" />
-<input #name name="name" type="text" (input)="onFilterChange(name)" />
-<input #city name="city" type="text" (input)="onFilterChange(city)" />
-<form
-	ngGroupModel
-	#totalIncome="ngForm"
-	(input)="onFilterChange(totalIncome, 'totalIncome')"
->
-	<input type="number" name="min" ngModel />
-	<input type="number" name="max" ngModel />
-</form>
-
-<form
-	ngGroupModel
-	#averageIncome="ngForm"
-	(input)="onFilterChange(averageIncome, 'averageIncome')"
->
-	<input type="number" name="min" ngModel />
-	<input type="number" name="max" ngModel />
-</form>
-
-<form
-	ngGroupModel
-	#lastMonthIncome="ngForm"
-	(input)="onFilterChange(lastMonthIncome, 'lastMonthIncome')"
->
-	<input type="number" name="min" ngModel />
-	<input type="number" name="max" ngModel />
-</form>
+<section>
+	<div>
+		<label class="inputGroup">
+			<span class="labelText">ID</span>
+			<input #id name="id" type="number" (input)="onFilterChange(id)" />
+		</label>
+		<label class="inputGroup">
+			<span class="labelText">Name</span>
+			<input
+				#name
+				name="name"
+				type="text"
+				(input)="onFilterChange(name)"
+			/>
+		</label>
+		<label class="inputGroup">
+			<span class="labelText">City</span>
+			<input
+				#city
+				name="city"
+				type="text"
+				(input)="onFilterChange(city)"
+			/>
+		</label>
+	</div>
+	<div>
+		<label class="inputGroup">
+			<span class="labelText">Total income</span>
+			<form
+				ngGroupModel
+				#totalIncome="ngForm"
+				(input)="onFilterChange(totalIncome, 'totalIncome')"
+			>
+				<input type="number" name="min" ngModel placeholder="Min" />
+				<input type="number" name="max" ngModel placeholder="Max" />
+			</form>
+		</label>
+		<label class="inputGroup">
+			<span class="labelText">Average income</span>
+			<form
+				ngGroupModel
+				#averageIncome="ngForm"
+				(input)="onFilterChange(averageIncome, 'averageIncome')"
+			>
+				<input type="number" name="min" ngModel placeholder="Min" />
+				<input type="number" name="max" ngModel placeholder="Max" />
+			</form>
+		</label>
+		<label class="inputGroup">
+			<span class="labelText">Last month income</span>
+			<form
+				ngGroupModel
+				#lastMonthIncome="ngForm"
+				(input)="onFilterChange(lastMonthIncome, 'lastMonthIncome')"
+			>
+				<input type="number" name="min" ngModel placeholder="Min" />
+				<input type="number" name="max" ngModel placeholder="Max" />
+			</form>
+		</label>
+	</div>
+</section>

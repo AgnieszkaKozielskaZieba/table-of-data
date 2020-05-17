@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
 	<app-table-pagination></app-table-pagination>
 
 	<table>
@@ -25,4 +25,36 @@
 	</table>
 
 	<app-table-pagination></app-table-pagination>
+</div> -->
+
+<app-table-pagination></app-table-pagination>
+
+<div class="tableContainer">
+	<table>
+		<thead>
+			<tr>
+				<th rowspan="2" (click)="sortData('id')">ID</th>
+				<th rowspan="2" (click)="sortData('name')">Name</th>
+				<th rowspan="2" (click)="sortData('city')">City</th>
+				<th colspan="3">Income</th>
+			</tr>
+			<tr>
+				<th (click)="sortData('totalIncome')">Total</th>
+				<th (click)="sortData('averageIncome')">Average</th>
+				<th (click)="sortData('lastMonthIncome')">Last month</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let company of dataToDisplay">
+				<td>{{ company.id }}</td>
+				<td>{{ company.name }}</td>
+				<td>{{ company.city }}</td>
+				<td>{{ company.totalIncome }}</td>
+				<td>{{ company.averageIncome }}</td>
+				<td>{{ company.lastMonthIncome }}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+
+<app-table-pagination></app-table-pagination>

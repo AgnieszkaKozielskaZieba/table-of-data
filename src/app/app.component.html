@@ -1,5 +1,5 @@
-<div>
+<main [ngClass]="{ 'hidden': !dataReady }">
 	<app-filter-fields></app-filter-fields>
 	<app-table></app-table>
-</div>
-<div *ngIf="!dataReady">Loading...</div>
+</main>
+<app-loading *ngIf="!dataReady"></app-loading>

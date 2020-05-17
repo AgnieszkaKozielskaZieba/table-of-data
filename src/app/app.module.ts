@@ -7,9 +7,10 @@ import { AppComponent } from "./app.component";
 import { TableComponent } from "./table/table.component";
 import { FilterFieldsComponent } from "./filter-fields/filter-fields.component";
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-	declarations: [AppComponent, TableComponent, FilterFieldsComponent, TablePaginationComponent],
+	declarations: [AppComponent, TableComponent, FilterFieldsComponent, TablePaginationComponent, LoadingComponent],
 	imports: [BrowserModule, HttpClientModule, FormsModule],
 	providers: [],
 	bootstrap: [AppComponent],

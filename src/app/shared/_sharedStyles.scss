@@ -1,0 +1,52 @@
+$themeColour: #f34573;
+$fontColour: #2a6171;
+$backColour: #75cac3;
+$backColour2: #d7f7f5;
+$inputColour: #d7f7f5;
+
+@mixin responsiveContainer {
+	width: 100%;
+
+	@media only screen and (min-width: 768px) {
+		width: 90%;
+	}
+
+	@media only screen and (min-width: 992px) {
+		width: 80%;
+	}
+
+	@media only screen and (min-width: 1200px) {
+		width: 70%;
+	}
+
+	@media only screen and (min-width: 1600px) {
+		width: 60%;
+	}
+}
+
+@mixin mainBorder {
+	border: 5px solid $themeColour;
+	border-radius: 15px;
+}
+
+@mixin mediumBorder {
+	border: 3px solid $themeColour;
+	border-radius: 5px;
+}
+body {
+	background-color: $backColour;
+}
+
+button,
+input {
+	background-color: $inputColour;
+	font-size: 15px;
+	border: 2px solid $themeColour;
+}
+
+body,
+button,
+input {
+	font-family: "Montserrat", sans-serif;
+	color: $fontColour;
+}

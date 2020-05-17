@@ -1,0 +1,42 @@
+@import "src/app/shared/sharedStyles";
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 100%;
+	background-color: $backColour2;
+}
+
+@media only screen and (max-width: 767px) {
+	table {
+		font-size: 0.9rem;
+	}
+}
+
+@media only screen and (max-width: 559px) {
+	table {
+		font-size: 0.8rem;
+	}
+}
+
+td,
+th {
+	padding: 0.5rem;
+	text-align: left;
+}
+
+td {
+	border-top: 1px solid $fontColour;
+}
+
+th {
+	cursor: pointer;
+}
+
+.tableContainer {
+	@include responsiveContainer;
+	@include mainBorder;
+	overflow-x: auto;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
