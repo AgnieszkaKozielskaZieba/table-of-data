@@ -5,7 +5,8 @@ import { DataService } from "../shared/data.service";
 	templateUrl: "./filter-fields.component.html",
 	styleUrls: ["./filter-fields.component.scss"],
 })
-export class FilterFieldsComponent implements OnInit {
+export class FilterFieldsComponent {
+	hideFilterFields: boolean = true;
 	filteringData = {};
 
 	constructor(private dataService: DataService) {}
@@ -24,6 +25,4 @@ export class FilterFieldsComponent implements OnInit {
 		}
 		this.dataService.filterData(this.filteringData);
 	}
-
-	ngOnInit() {}
 }

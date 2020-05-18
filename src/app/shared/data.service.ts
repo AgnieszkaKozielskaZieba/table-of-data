@@ -14,6 +14,8 @@ export class DataService {
 	sortedBy = "";
 	sortDirection = 1;
 	dataReady = new Subject<boolean>();
+	latestIncomesDates: number[] = [];
+	lastMonthDate: Date;
 	constructor(private http: HttpClient) {}
 
 	private getIncomeData(urlID) {
@@ -29,36 +31,13 @@ export class DataService {
 				];
 			}>(url)
 			.pipe(
-				map((income) => {
-					let totalIncome = +income.incomes.reduce((acc, val) => {
-						acc = +(acc + +val.value).toFixed(2);
-						return acc;
-					}, 0);
-					let averageIncome = +(
-						totalIncome / income.incomes.length
-					).toFixed(2);
-					let lastMonthIncome = +income.incomes
-						.filter((el) => {
-							let monthAgo = new Date();
-							monthAgo.setMonth(monthAgo.getMonth() - 1);
-							let elDate = new Date(el.date);
-							let dateDiff = +elDate - +monthAgo;
-							if (dateDiff > 0) {
-								return true;
-							} else {
-								return false;
-							}
-						})
-						.reduce((acc, val) => {
-							acc = +(acc + +val.value).toFixed(2);
-							return acc;
-						}, 0);
-
-					return {
-						totalIncome: totalIncome,
-						averageIncome: averageIncome,
-						lastMonthIncome: lastMonthIncome,
-					};
+				tap((income) => {
+					let allDates = [];
+					income.incomes.forEach((el) => {
+						allDates.push(+new Date(el.date));
+					});
+					let newestIncomeDate = Math.max(...allDates);
+					this.latestIncomesDates.push(newestIncomeDate);
 				})
 			);
 	}
@@ -69,6 +48,35 @@ export class DataService {
 		);
 	}
 
+	private calculateIncomeData(incomes: { value: number; date: string }[]) {
+		let totalIncome = +incomes.reduce((acc, val) => {
+			acc = +(acc + +val.value).toFixed(2);
+			return acc;
+		}, 0);
+		let averageIncome = +(totalIncome / incomes.length).toFixed(2);
+
+		let lastMonthIncome = incomes
+			.filter((el) => {
+				let elDate = new Date(el.date);
+				let dateDiff = +elDate - +this.lastMonthDate;
+				if (dateDiff > 0) {
+					return true;
+				} else {
+					return false;
+				}
+			})
+			.reduce((acc, val) => {
+				acc = +(acc + +val.value).toFixed(2);
+				return acc;
+			}, 0);
+
+		return {
+			totalIncome: totalIncome,
+			averageIncome: averageIncome,
+			lastMonthIncome: lastMonthIncome,
+		};
+	}
+
 	prepareData() {
 		this.getCompaniesData().subscribe((data) => {
 			let dataWithIncome = [];
@@ -77,11 +85,28 @@ export class DataService {
 				let newPromise = this.getIncomeData(el.id)
 					.toPromise()
 					.then((incomeData) => {
-						dataWithIncome.push({ ...el, ...incomeData });
+						dataWithIncome.push({
+							...el,
+							incomes: incomeData.incomes,
+						});
 					});
 				promises.push(newPromise);
 			});
 			Promise.all(promises).then(() => {
+				let latestIncome = new Date(
+					Math.max(...this.latestIncomesDates)
+				);
+				this.lastMonthDate = latestIncome;
+				this.lastMonthDate.setMonth(this.lastMonthDate.getMonth() - 1);
+				dataWithIncome = dataWithIncome.map((el) => {
+					return {
+						id: el.id,
+						name: el.name,
+						city: el.city,
+						...this.calculateIncomeData(el.incomes),
+					};
+				});
+
 				this.companiesData = dataWithIncome;
 				this.filteredData = this.companiesData;
 				this.sortData("id");

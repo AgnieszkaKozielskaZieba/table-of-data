@@ -17,6 +17,7 @@ export class TablePaginationComponent implements OnDestroy {
 		this.pagesNumberSubscr = this.tablePagService.numberOfPages.subscribe(
 			(num) => {
 				this.pagesNumber = num;
+				console.log(this.pagesNumber);
 			}
 		);
 		this.currentPageSubscr = this.tablePagService.currentPageSub.subscribe(

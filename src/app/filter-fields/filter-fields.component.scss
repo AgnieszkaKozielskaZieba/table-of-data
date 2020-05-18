@@ -2,12 +2,11 @@
 
 section {
 	@include responsiveContainer;
-	@include mainBorder;
 	box-sizing: border-box;
+	border-radius: 0 0 15px 15px;
 	padding: 20px 0;
 	margin: 0 auto;
-	margin-top: 20px;
-	background-color: $backColour2;
+	background-color: $themeColour;
 }
 div {
 	display: flex;
@@ -22,14 +21,40 @@ div {
 }
 .inputGroup {
 	@include mediumBorder;
-	margin: 10px 0;
+	margin: 5px 0;
 	padding: 10px;
-	width: 90%;
-	background-color: $backColour3;
+	width: 80%;
+	background-color: $backColour;
 }
 
+.filtersLabel {
+	color: $backColour;
+	font-size: 20px;
+	font-weight: 600;
+	background-color: $themeColour;
+	padding: 5px;
+	border-radius: 0 0 15px 15px;
+}
+
+.filtersLabel.expanded {
+	border-radius: 0;
+}
+
+i {
+	margin-left: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+	.hideForSmallScreen {
+		display: none;
+	}
+}
 @media only screen and (min-width: 768px) {
+	.filtersLabel {
+		display: none;
+	}
 	.inputGroup {
+		margin: 10px 0;
 		width: 25%;
 	}
 }

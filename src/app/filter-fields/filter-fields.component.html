@@ -1,4 +1,14 @@
-<section>
+<div
+	class="filtersLabel"
+	[ngClass]="{ 'expanded': !hideFilterFields }"
+	(click)="hideFilterFields = !hideFilterFields"
+>
+	<span>
+		FILTERS <i *ngIf="hideFilterFields" class="fas fa-chevron-down"></i
+		><i *ngIf="!hideFilterFields" class="fas fa-chevron-up"></i
+	></span>
+</div>
+<section [ngClass]="{ 'hideForSmallScreen': hideFilterFields }">
 	<div>
 		<label class="inputGroup">
 			<span class="labelText">ID</span>
